@@ -1,6 +1,6 @@
 import { Express } from "express";
 import config from "config";
-import Users from "../routes/Users";
+import Users from "../routes/User";
 
 export default (app: Express) => {
   app.use((req, res, next) => {
