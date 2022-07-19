@@ -1,5 +1,4 @@
 import winston from "winston";
-import { FireStore } from "../../server";
 import { IUser } from "../interfaces/User";
 import User from "../models/Users/Schema";
 

@@ -1,1 +1,2 @@
-TODO creat a config folder and handle firestore connection (inProgress)
+TODO create a config folder and handle firestore connection (Done)
+TODO create a validation layer for the Create and update ops (Done)

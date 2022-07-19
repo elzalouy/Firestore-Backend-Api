@@ -1,6 +1,7 @@
 import winston from "winston";
 import { FireStore } from "../../../server";
 import { IUser } from "../../interfaces/User";
+import { userJoiSchema } from "./Validations";
 
 /**
  * User Model Class
@@ -8,7 +9,7 @@ import { IUser } from "../../interfaces/User";
  * User Schema for Firestore CRUD ops
  */
 class User {
-  user: IUser = {};
+  private user: IUser = {};
   constructor(name?: string, email?: string) {
     this.user = { name: name, email: email };
   }
@@ -21,10 +22,22 @@ class User {
    */
   async __save() {
     try {
+      let validation = this.__validate();
+      if (validation?.error !== null) return validation;
       await FireStore?.collection("users").doc().set(this.user);
-      return "Saved Successfully";
+      return { error: null, value: validation.value };
     } catch (error) {
       winston.error({ __saveUserSchemaError: error });
+    }
+  }
+  __validate() {
+    try {
+      let validation = userJoiSchema.validate(this.user);
+      if (validation.error)
+        return { error: validation.error, value: validation.value };
+      else return { error: null, value: validation.value };
+    } catch (error) {
+      winston.error({ __validateUserSchemaError: error });
     }
   }
 

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import winston from "winston";
-import { FireStore } from "../../../server";
 import UserControllter from "../../controllers/UserController";
 
 export default class UserRouter {
@@ -26,7 +25,6 @@ export default class UserRouter {
   }
   static async deleteUser(req: Request, res: Response) {
     try {
-      console.log(req.params);
       let deleteResult = await UserControllter.__deleteUser(req.params.id);
       if (deleteResult) return res.send(deleteResult);
     } catch (error) {
