@@ -1,26 +1,18 @@
-import { initializeApp, cert, ServiceAccount } from "firebase-admin/app";
+import { cert, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import config from "config";
 import winston from "winston";
 
 export default () => {
   try {
-    if (
-      config.has("private_key") &&
-      config.has("client_email") &&
-      config.has("project_id")
-    ) {
-      let serviceAccount: any = {
-        private_key: `${config.get("private_key")}`.replace(/\\n/g, "\n"),
-        client_email: config.get("client_email"),
-        project_id: config.get("project_id"),
-      };
-      initializeApp({
-        credential: cert(serviceAccount),
-      });
-      const DB = getFirestore();
-      return DB;
-    }
+    let serviceAccount: any = {
+      privateKey: `${config.get("firebase_privateKey")}`.replace(/\\n/g, "\n"),
+      projectId: config.get("firebase_project_id"),
+      clientEmail: config.get("firebase_clientEmail"),
+    };
+    let App = initializeApp({ credential: cert(serviceAccount) });
+    const DB = getFirestore(App);
+    return { DB, App };
   } catch (error) {
     winston.error({ startupDBError: error });
   }

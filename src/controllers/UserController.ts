@@ -1,12 +1,16 @@
 import winston from "winston";
-import { IUser } from "../interfaces/User";
+import { IUser, Subscriber, Subscription } from "../interfaces/User";
 import User from "../models/Users/Schema";
 
 export default class UserControllter {
-  static async __createUser(user: IUser) {
+  static async __createUser(user: IUser, subscriber: Subscriber) {
     try {
-      let userDoc = new User(user.name, user.email);
-      return await userDoc.__save();
+      let newSubscription = new User({
+        user: user,
+        Subscriber: subscriber,
+      });
+      let result = await newSubscription.__save();
+      return result;
     } catch (error) {
       winston.error({ __createUserControllerError: error });
     }
@@ -18,14 +22,6 @@ export default class UserControllter {
       return users;
     } catch (error) {
       winston.error({ __getAllUsersControllerError: error });
-    }
-  }
-  static async __deleteUser(id: string) {
-    try {
-      let result = await User.__deleteUser(id);
-      if (result) return result;
-    } catch (error) {
-      winston.error({ __deleteUserControllerError: error });
     }
   }
 }

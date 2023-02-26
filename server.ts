@@ -12,9 +12,9 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const DB = db();
-logger();
 configuration();
+const Firebase = db();
+logger();
 prod(app);
 routes(app);
 const port = process.env.PORT || 5000;
@@ -27,5 +27,5 @@ const server = app.listen(port, () => {
     winston.error(ex.message, ex);
   }
 });
-export const FireStore = DB;
+export const FireStore = Firebase?.DB;
 export default server;
