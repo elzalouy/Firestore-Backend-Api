@@ -16,6 +16,8 @@ export default class UserRouter {
       const user = req.body.user;
       const subscriper = req.body.subscriber;
       let result = await UserControllter.__createUser(user, subscriper);
+      if (result?.error)
+        return res.status(400).send("Phone number is already existed");
       return res.send(result);
     } catch (error) {
       winston.error({ createUserRouterError: error });

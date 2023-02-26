@@ -25,8 +25,6 @@ class User {
    */
   async __save() {
     try {
-      // let validation = this.__validate();
-      // if (validation?.error !== null) return validation;
       if (this.user && this.Subscriber) {
         let found = await FireStore?.collection("users")
           .where("phoneNumber", "==", this.user.phoneNumber)
@@ -42,7 +40,10 @@ class User {
             value: { user: this.user, subscriber: this.Subscriber },
           };
         } else {
-          // this.id=(await FireStore?.collection(""))
+          return {
+            error: "Phone number is already existed before",
+            value: null,
+          };
         }
       } else return { error: "User data is required", value: null };
     } catch (error) {
