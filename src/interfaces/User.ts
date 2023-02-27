@@ -17,7 +17,7 @@ export enum PackageType {
 }
 
 export interface IUser {
-  documentId: string;
+  documentId?: string;
   fullName: string;
   phoneNumber: string;
   role: role;

@@ -30,7 +30,10 @@ class User {
           .where("phoneNumber", "==", this.user.phoneNumber)
           .get();
         if (found?.empty) {
-          this.id = (await FireStore?.collection("users").add(this.user))?.id;
+          this.id = this.user.documentId = (
+            await FireStore?.collection("users").add(this.user)
+          )?.id;
+          this.Subscriber.userId = this.id ?? "";
           await FireStore?.collection("subscribers").add({
             ...this.Subscriber,
             userId: this.id,
