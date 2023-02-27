@@ -1,26 +1,26 @@
 export enum role {
-  Admin,
-  Subscriber,
-  UnSubscriber,
-  GymSubscriber,
-  BothSubscriber,
+  Admin = 0,
+  Subscriber = 1,
+  UnSubscriber = 2,
+  GymSubscriber = 3,
+  BothSubscriber = 4,
 }
 export enum PackageDuration {
-  monthly,
-  twoMonth,
-  threeMonth,
+  monthly = 0,
+  twoMonth = 1,
+  threeMonth = 2,
 }
 export enum PackageType {
-  gym,
-  csub,
-  both,
+  gym = 0,
+  csub = 1,
+  both = 2,
 }
 
 export interface IUser {
   documentId?: string;
   fullName: string;
   phoneNumber: string;
-  role: role;
+  role: any;
 }
 
 export interface Subscriber {
@@ -41,8 +41,8 @@ export interface Subscription {
   discountPercentage: number;
 }
 export interface Package {
-  packageType: PackageType;
+  packageType: any;
   price: number;
-  packageDuration: PackageDuration;
+  packageDuration: any;
   packageName: String;
 }

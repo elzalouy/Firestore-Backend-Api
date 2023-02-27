@@ -7,7 +7,7 @@ export default class UserControllter {
     try {
       let newSubscription = new User({
         user: user,
-        Subscriber: subscriber,
+        subscriber: subscriber,
       });
       let result = await newSubscription.__save();
       return result;

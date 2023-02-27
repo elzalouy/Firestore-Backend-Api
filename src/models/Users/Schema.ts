@@ -1,8 +1,15 @@
 import winston from "winston";
 import { FireStore } from "../../../server";
-import { IUser, Subscriber, Subscription } from "../../interfaces/User";
+import {
+  IUser,
+  PackageDuration,
+  PackageType,
+  Subscriber,
+  Subscription,
+} from "../../interfaces/User";
 import { userJoiSchema } from "./Validations";
 import firebaseAuth, { getAuth } from "firebase/auth";
+import { role } from "../../interfaces/User";
 /**
  * User Model Class
  *
@@ -12,9 +19,18 @@ class User {
   private id?: string;
   private user?: IUser;
   private Subscriber?: Subscriber;
-  constructor(data: { user: IUser; Subscriber: Subscriber }) {
+  constructor(data: { user: IUser; subscriber: Subscriber }) {
     this.user = data.user;
-    this.Subscriber = data.Subscriber;
+    this.Subscriber = data.subscriber;
+    this.user.role = role[data.user.role] ?? 0;
+    console.log({ role: this.user.role });
+    this.Subscriber.subscription = this.Subscriber.subscription.map((item) => {
+      item.package.packageDuration =
+        PackageDuration[item.package.packageDuration] ?? 0;
+      item.package.packageType = PackageType[item.package.packageType] ?? 0;
+      return item;
+    });
+    console.log({ Subscriber: this.Subscriber });
   }
 
   /**
