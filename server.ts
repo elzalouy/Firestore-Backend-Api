@@ -27,5 +27,5 @@ const server = app.listen(port, () => {
     winston.error(ex.message, ex);
   }
 });
-export const FireStore = Firebase?.DB;
+export const FireStore = Firebase?.DB ?? null;
 export default server;
