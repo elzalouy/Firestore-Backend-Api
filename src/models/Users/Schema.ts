@@ -88,7 +88,7 @@ class User {
       if (data?.empty) return [];
       else {
         let all: IUser[] = [];
-        data?.forEach((item) => {
+        data?.forEach((item: any) => {
           all.push({
             documentId: item.id,
             fullName: item.data().fullName,
