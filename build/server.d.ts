@@ -1,4 +1,4 @@
 /// <reference types="node" />
-declare const server: import("http").Server;
-export declare const FireStore: FirebaseFirestore.Firestore | undefined;
+declare const server: import("http").Server<typeof import("http").IncomingMessage, typeof import("http").ServerResponse>;
+export declare const FireStore: FirebaseFirestore.Firestore | null;
 export default server;

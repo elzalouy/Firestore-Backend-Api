@@ -10,7 +10,7 @@ declare class User {
     private Subscriber?;
     constructor(data: {
         user: IUser;
-        Subscriber: Subscriber;
+        subscriber: Subscriber;
     });
     /**
      * __save

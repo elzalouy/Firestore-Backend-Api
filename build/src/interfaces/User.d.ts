@@ -16,10 +16,10 @@ export declare enum PackageType {
     both = 2
 }
 export interface IUser {
-    documentId: string;
+    documentId?: string;
     fullName: string;
     phoneNumber: string;
-    role: role;
+    role: any;
 }
 export interface Subscriber {
     userId: string;
@@ -39,8 +39,8 @@ export interface Subscription {
     discountPercentage: number;
 }
 export interface Package {
-    packageType: PackageType;
+    packageType: any;
     price: number;
-    packageDuration: PackageDuration;
+    packageDuration: any;
     packageName: String;
 }

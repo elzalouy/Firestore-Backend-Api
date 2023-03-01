@@ -15,7 +15,6 @@ export default class UserRouter {
     try {
       const user = req.body.user;
       const subscriber = req.body.subscriber;
-      console.log({ re: req.body });
 
       let result = await UserControllter.__createUser(user, subscriber);
       if (result?.error)
