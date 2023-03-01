@@ -47,3 +47,11 @@
 {"level":"error","message":{"__deleteUserSchemaError":{"code":"app/no-options","customData":{},"name":"FirebaseError"}}}
 {"level":"error","message":{"__deleteUserSchemaError":{"code":"app/no-options","customData":{},"name":"FirebaseError"}}}
 {"level":"error","message":{"startupDBError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}
+{"level":"error","message":{"__createUserControllerError":{}}}

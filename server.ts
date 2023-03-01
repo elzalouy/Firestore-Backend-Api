@@ -7,11 +7,12 @@ import db from "./src/startup/db";
 import prod from "./src/startup/prod";
 import logger from "./src/startup/logger";
 import routes from "./src/startup/routes";
-
+import cors from "cors";
 const app = express();
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 configuration();
 const Firebase = db();
 logger();

@@ -45,6 +45,7 @@ class User {
         let found = await FireStore?.collection("users")
           .where("phoneNumber", "==", this.user.phoneNumber)
           .get();
+        console.log({ empty: found?.empty });
         if (found?.empty) {
           this.id = this.user.documentId = (
             await FireStore?.collection("users").add(this.user)
@@ -54,6 +55,7 @@ class User {
             ...this.Subscriber,
             userId: this.id,
           });
+          console.log({ user: this.user, subs: this.Subscriber });
           return {
             error: null,
             value: { user: this.user, subscriber: this.Subscriber },

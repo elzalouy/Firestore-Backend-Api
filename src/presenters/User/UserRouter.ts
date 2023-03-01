@@ -14,8 +14,10 @@ export default class UserRouter {
   static async addSubscriber(req: Request, res: Response) {
     try {
       const user = req.body.user;
-      const subscriper = req.body.subscriber;
-      let result = await UserControllter.__createUser(user, subscriper);
+      const subscriber = req.body.subscriber;
+      console.log({ re: req.body });
+
+      let result = await UserControllter.__createUser(user, subscriber);
       if (result?.error)
         return res.status(400).send("Phone number is already existed");
       return res.send(result?.value);
