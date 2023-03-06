@@ -2,5 +2,6 @@
   "type": "type",
   "firebase_project_id": "firebase_project_id",
   "firebase_privateKey": "firebase_privateKey",
-  "firebase_clientEmail": "firebase_clientEmail"
+  "firebase_clientEmail": "firebase_clientEmail",
+  "front_end_url": "front_end_url"
 }

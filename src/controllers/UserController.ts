@@ -15,6 +15,18 @@ export default class UserControllter {
       winston.error({ __createUserControllerError: error });
     }
   }
+  static async __savePaymentId(
+    userId: string,
+    paymentId: string,
+    subIndex: number
+  ) {
+    try {
+      let result = await User.__savePaymentId(userId, paymentId, subIndex);
+      return result;
+    } catch (error) {
+      winston.error({ __savePaymentIdError: error });
+    }
+  }
 
   static async __getUsers() {
     try {

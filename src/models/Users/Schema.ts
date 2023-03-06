@@ -82,7 +82,14 @@ class User {
       winston.error({ __validateUserSchemaError: error });
     }
   }
-
+  static async __savePaymentId(userId: string, id: string, index: number) {
+    try {
+      let doc = await FireStore?.collection("subscribers")
+        .doc(userId)
+        .update({ [`subscription[${index}].transactionId`]: id });
+      return doc;
+    } catch (error) {}
+  }
   static async __getAllUsers() {
     try {
       let Users = await FireStore?.collection("users");
